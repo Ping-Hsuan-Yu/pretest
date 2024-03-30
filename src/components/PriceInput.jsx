@@ -18,7 +18,7 @@ export default function PriceInput({ data, setList }) {
   };
 
   const isValidFormat = (string) => {
-    const regex = /^(\d{1,3})(,\d{3})*(\.\d+)?$/;
+    const regex = /^-?(\d{1,3})(,\d{3})*(\.\d+)?$/;
     return regex.test(string);
   };
 

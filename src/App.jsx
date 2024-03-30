@@ -3,10 +3,10 @@ import AgeGroupPriceList from "./components/AgeGroupPriceList";
 import { PlusLg } from "react-bootstrap-icons";
 
 export default function App() {
-  const [list, setList] = useState([{ id: 1, age: [0, 20], price: "" }]);
+  const [list, setList] = useState([{ id: 1, ageGroup: [0, 20], price: 0 }]);
 
   const handleAddRow = () => {
-    setList((prev) => [...prev, { id: prev[prev.length - 1].id + 1, age: [0, 20], price: "" }]);
+    setList((prev) => [...prev, { id: prev[prev.length - 1].id + 1, ageGroup: [0, 20], price: 0 }]);
   };
 
   const getNumberIntervals = (array) => {
@@ -53,8 +53,6 @@ export default function App() {
     return finalResult;
   };
 
-  
-
   useEffect(() => {
     console.log("AgeGroupPriceList", list);
   }, [list]);
@@ -70,18 +68,21 @@ export default function App() {
             data={item}
             setList={setList}
             lastItem={list.length === index + 1}
-            overlap={getNumberIntervals(list.map((item)=>item.age)).overlap[0][0]!==undefined}
+            overlap={getNumberIntervals(list.map((item)=>item.ageGroup)).overlap[0][0]!==undefined}
           />
         ))}
       </div>
       <button
         className="btn text-info border-0 d-flex align-items-center gap-1 mt-4 cursor-pointer"
         onClick={handleAddRow}
-        disabled={getNumberIntervals(list.map((item)=>item.age)).notInclude[0][0]===undefined}
+        disabled={getNumberIntervals(list.map((item)=>item.ageGroup)).notInclude[0][0]===undefined}
       >
         <PlusLg />
         <span>新增價格設定</span>
       </button>
+      <div className="mt-5 text-end">
+        <span>AgeGroupPriceList: {JSON.stringify(list)}</span>
+      </div>
     </div>
   );
 }

@@ -7,7 +7,7 @@ export default function AgeGroupSelect({ data, setList, overlap }) {
     setList((prev) =>
       prev.map((item) =>
         item.id === id
-          ? { ...item, age: item.age.map((age, idx) => (idx === startOrEnd ? Number(value) : age)) }
+          ? { ...item, ageGroup: item.ageGroup.map((age, idx) => (idx === startOrEnd ? Number(value) : age)) }
           : item
       )
     );
@@ -18,13 +18,13 @@ export default function AgeGroupSelect({ data, setList, overlap }) {
       <div className={`input-group${overlap ? " is-invalid" : ""}`}>
         <select
           className="form-select"
-          value={data.age[0]}
+          value={data.ageGroup[0]}
           onChange={(e) => {
             handleAgeOnChange(0, e.target.value, data.id);
           }}
         >
           {ageStartOption.map((item) => (
-            <option key={`s${data.id}${item}`} value={item} disabled={item > data.age[1]}>
+            <option key={`s${data.id}${item}`} value={item} disabled={item > data.ageGroup[1]}>
               {item}
             </option>
           ))}
@@ -32,13 +32,13 @@ export default function AgeGroupSelect({ data, setList, overlap }) {
         <span className="input-group-text">~</span>
         <select
           className="form-select"
-          value={data.age[1]}
+          value={data.ageGroup[1]}
           onChange={(e) => {
             handleAgeOnChange(1, e.target.value, data.id);
           }}
         >
           {ageEndOption.map((item) => (
-            <option key={`e${data.id}${item}`} value={item} disabled={item < data.age[0]}>
+            <option key={`e${data.id}${item}`} value={item} disabled={item < data.ageGroup[0]}>
               {item}
             </option>
           ))}
