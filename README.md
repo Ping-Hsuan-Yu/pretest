@@ -1,6 +1,6 @@
 ### addComma
 /src/components/PriceInput.jsx
-```
+```JavaScript
 const addComma = (string) => {
     const num = string.replace(/,/g, "");
 
@@ -18,7 +18,7 @@ const addComma = (string) => {
 
 ### getNumberIntervals
 /src/App.jsx
-```
+```JavaScript
 const getNumberIntervals = (array) => {
     const finalResult = { overlap: [], notInclude: [] };
 
